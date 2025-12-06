@@ -4,3 +4,10 @@
 *.session-journal
 Pipfile.lock
 .python-version
+__pycache__/*
+bot/handlers/__pycache__/*
+*__pycache__/*
+bot/helpers/__pycache__/*
+bot/services/__pycache__/*
+bot/utils/__pycache__/*
+bot/__pycache__/*

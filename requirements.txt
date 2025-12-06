@@ -2,4 +2,3 @@ pydantic-settings
 kurigram
 aiosqlite
 httpx
-tgcrypto

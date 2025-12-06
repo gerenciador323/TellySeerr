@@ -37,7 +37,6 @@ ADMIN_COMMANDS = USER_COMMANDS + [
 ]
 
 
-@app.on_start()
 async def start_services(client: Client):
     """Async tasks to run *after* Pyrogram connects."""
     logger.info("Running startup services...")
@@ -64,7 +63,6 @@ async def start_services(client: Client):
     logger.info("Background task created. Bot is ready!")
 
 
-@app.on_stop()
 async def stop_services(client: Client):
     """Async tasks to run *before* Pyrogram disconnects."""
     logger.info("Running shutdown services...")
@@ -72,7 +70,7 @@ async def stop_services(client: Client):
     logger.info("HTTP client closed.")
 
 
-if __name__ == "__main__":
+async def main():
     logger.info("Starting bot configuration...")
 
     app.api_id = settings.TELEGRAM_API_ID
@@ -83,7 +81,20 @@ if __name__ == "__main__":
     load_all_handlers(app)
     logger.info("Handlers loaded.")
 
-    logger.info("Bot configured. Starting Pyrogram's app.run()...")
-    app.run()
+    logger.info("Starting Pyrogram client...")
+    await app.start()
+    logger.info("Pyrogram client started.")
 
+    await start_services(app)
+    logger.info("Startup services completed.")
+
+    await app.idle()
+    logger.info("Idle ended. Running shutdown services...")
+
+    await stop_services(app)
+    await app.stop()
     logger.info("Bot has stopped.")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())

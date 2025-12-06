@@ -1,0 +1,4 @@
+2025-12-05T18:41:00Z – main.py
+- Ajustado ciclo de vida do bot para usar asyncio.run e app.start/idle/stop.
+- Removidas anotações inexistentes on_start/on_stop, chamando start_services/stop_services manualmente.
+- Carregamento de handlers ocorre antes de iniciar o client.

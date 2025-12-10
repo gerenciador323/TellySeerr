@@ -3,66 +3,66 @@
 [![Linter: Ruff](https://img.shields.io/badge/linter-ruff-brightgreen.svg)](https://github.com/astral-sh/ruff)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A powerful, all-in-one Telegram bot for managing your Jellyfin and Jellyseerr servers. It acts as a full-featured gateway for both you and your users, automating invites, handling media requests, and providing watch statistics.
+Um bot poderoso e tudo‑em‑um para o Telegram para gerenciar seus servidores Jellyfin e Jellyseerr. Ele atua como um gateway completo tanto para você quanto para seus usuários, automatizando convites, lidando com pedidos de mídia e fornecendo estatísticas de reprodução.
 
-## ✨ Core Features
+## ✨ Funcionalidades principais
 
-### 👑 Admin Management
-* **Easy User Invites:** Simply reply to a user in Telegram to invite them:
-    * `/invite`: Creates a full, permanent Jellyfin/Jellyseerr account.
-    * `/trial`: Creates a 7-day trial account.
-    * `/vip`: Creates a 30-day VIP account.
-* **User Management:**
-    * `/deleteuser <username>`: Deletes a user from Jellyfin, Jellyseerr, and the bot's database.
-    * `/listusers`: Shows a complete list of all users on your Jellyfin server.
-* **Automatic Cleanup:** A background task runs daily to find and automatically delete expired trial/VIP users from all services.
+### 👑 Gerenciamento de administradores
+* **Convites de usuários de forma simples:** Basta responder a um usuário no Telegram para convidá‑lo:
+    * `/invite`: Cria uma conta completa e permanente no Jellyfin/Jellyseerr.
+    * `/trial`: Cria uma conta de teste de 7 dias.
+    * `/vip`: Cria uma conta VIP de 30 dias.
+* **Gerenciamento de usuários:**
+    * `/deleteuser <username>`: Exclui um usuário do Jellyfin, Jellyseerr e do banco de dados do bot.
+    * `/listusers`: Mostra uma lista completa de todos os usuários no seu servidor Jellyfin.
+* **Limpeza automática:** Uma tarefa em background é executada diariamente para encontrar e excluir automaticamente usuários de teste/VIP expirados de todos os serviços.
 
-### 👤 User Features
-* **Self-Service Linking:** Users with existing accounts can link them to the bot with `/link <username> <password>`.
-* **Personal Stats:** Users can run `/watch` to see their personal watch time and total items played from Jellyfin.
+### 👤 Funcionalidades para usuários
+* **Vinculação self‑service:** Usuários com contas existentes podem vinculá‑las ao bot com `/link <username> <password>`.
+* **Estatísticas pessoais:** Usuários podem executar `/watch` para ver seu tempo total assistido e o total de itens reproduzidos a partir do Jellyfin.
 
-### 🎬 Media Requests (via Jellyseerr)
-* **Search & Discover:**
-    * `/request <name>`: Searches for new movies and shows.
-    * `/discover`: Shows a browsable list of popular and trending media.
-* **Full Request System:**
-    * Users can submit media requests directly through interactive buttons.
-    * `/requests`: Users can view the status of all their own pending requests.
-* **Smart Caching:** Search and discover results are cached for 1 hour to reduce API spam and improve speed.
+### 🎬 Pedidos de mídia (via Jellyseerr)
+* **Busca e descoberta:**
+    * `/request <name>`: Busca por novos filmes e séries.
+    * `/discover`: Mostra uma lista navegável de mídias populares e em alta.
+* **Sistema completo de pedidos:**
+    * Usuários podem enviar pedidos de mídia diretamente por meio de botões interativos.
+    * `/requests`: Usuários podem ver o status de todos os seus pedidos pendentes.
+* **Cache inteligente:** Resultados de busca e descoberta são armazenados em cache por 1 hora para reduzir spam na API e melhorar a velocidade.
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Primeiros passos
 
-### Prerequisites
+### Pré‑requisitos
 
-1.  A **Telegram Bot**. Get your `BOT_TOKEN` from [BotFather](https://t.me/botfather).
-2.  Your **Telegram API ID & Hash**. Get these from [my.telegram.org](https://my.telegram.org).
-3.  A **Jellyfin** server. You need your **Server URL** and an **API Key** (generate one in Dashboard > API Keys).
-4.  A **Jellyseerr** server. You need your **Server URL** and your **API Key** (find in Jellyseerr Settings > General).
+1.  Um **bot do Telegram**. Obtenha seu `BOT_TOKEN` com o [BotFather](https://t.me/botfather).
+2.  Seu **Telegram API ID e Hash**. Obtenha em [my.telegram.org](https://my.telegram.org).
+3.  Um servidor **Jellyfin**. Você precisa da **URL do servidor** e de uma **API Key** (gere uma em Dashboard > API Keys).
+4.  Um servidor **Jellyseerr**. Você precisa da **URL do servidor** e da sua **API Key** (encontre em Jellyseerr Settings > General).
 5.  **Python 3.11+**
-6.  **Pipenv** (for managing dependencies).
+6.  **Pipenv** (para gerenciar dependências).
 
-### ⚙️ Installation & Setup
+### ⚙️ Instalação e configuração
 
-1.  **Clone the repository:**
+1.  **Clone o repositório:**
     ```bash
     git clone [https://github.com/DESTROYER-32/TellySeerr.git](https://github.com/DESTROYER-32/TellySeerr.git)
     cd your-repo-name
     ```
 
-2.  **Install dependencies using Pipenv:**
+2.  **Instale as dependências usando o Pipenv:**
     ```bash
     pipenv install
     ```
-    This will create a virtual environment and install all packages from the `Pipfile.lock`.
+    Isto criará um ambiente virtual e instalará todos os pacotes a partir do `Pipfile.lock`.
 
-3.  **Configure your bot:**
-    Copy the sample environment file to create your own secret file.
+3.  **Configure seu bot:**
+    Copie o arquivo de ambiente de exemplo para criar seu próprio arquivo de segredos.
     ```bash
     cp .env.sample .env
     ```
-    Now, edit the `.env` file with your API keys and URLs. It's crucial that you **do not** use quotes (`"`) around the values.
+    Agora, edite o arquivo `.env` com suas chaves de API e URLs. É fundamental que você **não** use aspas (`"`) ao redor dos valores.
 
     ```ini
     # --- .env file ---
@@ -80,51 +80,51 @@ A powerful, all-in-one Telegram bot for managing your Jellyfin and Jellyseerr se
     ADMIN_USER_IDS=[123456789, 987654321]
     ```
 
-4.  **Run the bot:**
+4.  **Execute o bot:**
     ```bash
     pipenv run python main.py
     ```
-    The bot will start, connect to Telegram, set its commands, and initialize the database.
+    O bot será iniciado, conectará ao Telegram, definirá seus comandos e inicializará o banco de dados.
 
 ---
 
-## 🤖 Bot Commands
+## 🤖 Comandos do bot
 
-The bot will automatically set these commands in the Telegram menu for you. Admins will see an extended list.
+O bot definirá automaticamente esses comandos no menu do Telegram para você. Administradores verão uma lista estendida.
 
-### User Commands
-| Command | Description |
+### Comandos de usuário
+| Comando | Descrição |
 | --- | --- |
-| `/start` | Start the bot |
-| `/help` | Show the help message |
-| `/request` | Request a movie/show. Usage: `/request <name>` |
-| `/discover` | Discover popular and trending media |
-| `/requests` | View your pending media requests |
-| `/watch` | See your personal watch statistics |
-| `/link` | Link your Jellyfin account. Usage: `/link <user> <pass>` |
-| `/unlink` | Unlink your Jellyfin account |
+| `/start` | Inicia o bot |
+| `/help` | Mostra a mensagem de ajuda |
+| `/request` | Solicita um filme/série. Uso: `/request <name>` |
+| `/discover` | Descobre mídias populares e em alta |
+| `/requests` | Exibe seus pedidos de mídia pendentes |
+| `/watch` | Mostra suas estatísticas pessoais de reprodução |
+| `/link` | Vincula sua conta Jellyfin. Uso: `/link <user> <pass>` |
+| `/unlink` | Desvincula sua conta Jellyfin |
 
-### Admin-Only Commands
-| Command | Description |
+### Comandos apenas para admins
+| Comando | Descrição |
 | --- | --- |
-| `/invite` | Reply to a user to create a permanent account |
-| `/trial` | Reply to a user to create a 7-day trial |
-| `/vip` | Reply to a user to create a 30-day VIP account |
-| `/deleteuser` | Delete a user. Usage: `/deleteuser <username>` |
-| `/listusers` | List all users on the Jellyfin server |
+| `/invite` | Responda a um usuário para criar uma conta permanente |
+| `/trial` | Responda a um usuário para criar uma conta de teste de 7 dias |
+| `/vip` | Responda a um usuário para criar uma conta VIP de 30 dias |
+| `/deleteuser` | Exclui um usuário. Uso: `/deleteuser <username>` |
+| `/listusers` | Lista todos os usuários no servidor Jellyfin |
 
 ---
 
-## 🤝 Contributing
+## 🤝 Contribuindo
 
-Contributions are welcome! If you'd like to fix a bug or add a new feature, please read the `CONTRIBUTING.md` file for details on how to:
+Contribuições são bem‑vindas! Se você quiser corrigir um bug ou adicionar uma nova funcionalidade, leia o arquivo `CONTRIBUTING.md` para obter detalhes sobre como:
 
-* Report bugs and suggest features
-* Set up your development environment
-* Follow the code style and submit your changes
+* Reportar bugs e sugerir funcionalidades
+* Configurar seu ambiente de desenvolvimento
+* Seguir o estilo de código e enviar suas alterações
 
 ---
 
-## 📜 License
+## 📜 Licença
 
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+Este projeto está licenciado sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
